@@ -23,7 +23,7 @@ Development
 Dependencies
 * Development environment is Ubuntu 13+
 * Erlang OTP 17 or above (http://www.erlang.org/download.html)
-* Rebar (https://github.com/basho/rebar) 
+* Rebar (https://github.com/rebar/rebar) Note that different version of Rebar may breaks rebar.config. I have checked in the one used in the project.
 * make tool (should be part of ubuntu build-essentials package)
 
 There are several main branches.
