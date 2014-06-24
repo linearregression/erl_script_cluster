@@ -26,6 +26,10 @@ Dependencies
 * Rebar (https://github.com/basho/rebar) 
 * make tool (should be part of ubuntu build-essentials package)
 
+There are several main branches.
+dev, qa, staging, master
+Deveopment should be in dev branch. Any stable release should be merged back to masterand tagged.
+
 Contribution
 ------------
 If you are going to submitt pull request, please make sure that:
