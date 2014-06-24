@@ -5,7 +5,12 @@ Use Erlang OTP framework  to manage execution of external scripts.
 
 Description
 ------------
+Erlang  OTP framework takes care of a lots of high availability and some level of self healing through process supervision tree. the Framework has been battle-hardened over years. Read more here (http://learnyousomeerlang.com/what-is-otp). 
+Erlang also can interface with non Erlang program through nif, port etc. For scripts like python/ruby there is erlPort (http://erlport.org/) that ease most of the work.
 
+All this implies we can have python/ruby script as dump worker scripts, receive commands from erl_script_cluster and let erlang OTP to handle recovery automatically (Restart-Based High Availability). It works best when your script is stateless. If it is stateful, you script need to make sure what consistute a good state on each execution.
+
+Note that this approach assumes that there are lots of bugs can be solved under Restart-Based High Availability and a good portion of the bugs are Heisenbugs. (http://roc.cs.berkeley.edu/papers/HA_measurability.pdf). If there are real bugs in your script, this probably will not help; but it does let user to configure when it is time to just bail out retrying and let it crash for futher investigation
 
 
 Installation
