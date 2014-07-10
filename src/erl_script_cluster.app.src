@@ -1,0 +1,13 @@
+{application, erl_script_cluster,
+ [
+  {description, "A clsuter of Erlang OTP App supervised script workers."},
+  {vsn, "0.0.1"},
+  {registered, [erl_script_cluster]},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  lager
+                 ]},
+  {mod, { erl_script_cluster_app, []}},
+  {env, []}
+ ]}.

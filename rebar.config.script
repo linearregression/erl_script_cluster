@@ -1,0 +1,45 @@
+[SQOR_DEPLOY_Env,_] = re:replace(os:cmd("git rev-parse --abbrev-ref HEAD"),"\\s+","",[global]).
+case binary_to_list(SQOR_DEPLOY_Env) of
+    false -> 
+        io:format("***** Current environment: ~s ****** ~n",[false]),
+	CONFIG;
+
+    [] -> 
+        io:format("***** Current environment: ~s ****** ~n",[""]),
+	CONFIG;
+    "development" -> 
+        io:format("***** Current environment: ~s ****** ~n",[development]), CONFIG;
+    Env ->
+        io:format("***** Current environment: ~s ****** ~n",[Env]),
+        [{deps, [
+            {lager, ".*",
+        	{git, "git://github.com/basho/lager.git", 
+		{tag, "2.0.0"}}
+    	    },
+     	    {jsx, ".*",
+        	{git, "git://github.com/talentdeficit/jsx.git", 
+		{tag, "v1.4.3"}}
+    	     },
+    	    {jobs, ".*",
+		{git, "git://github.com/esl/jobs.git", 
+		{tag, "0.3"}}
+            },    
+    	    {erlport, ".*",
+    		{git, "git://github.com/hdima/erlport.git",
+		{branch, "master"}}
+    	    },
+    	    {configgins, ".*",
+        	{git, "git@github.com:Amplify-Social/Configgins.git", 
+		{branch, Env}}
+    	    },
+    	    {sqor_algo, ".*",
+        	{git, "git@github.com:Amplify-Social/sqor_algo.git",
+		{branch, master}}, [raw]
+    	    },
+    	    {sqor_logger, ".*",
+  		{git, "git@github.com:Amplify-Social/sqor_logger.git", 
+		{branch, Env}}
+    	    }             
+     ]}  | proplists:delete(deps, CONFIG)]
+
+end.
